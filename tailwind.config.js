@@ -30,10 +30,13 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "#6366f1",
-        secondary: "#f59e0b",
-        darkBg: "#0f172a",
+        "textColor-secondary": "rgba(133,127,148,1)",
+        primaryBg: "#100c18",
+        darkBg: "#100c18",
         "primary-border": "rgb(35, 30, 47)",
+        primaryPink: "rgba(236,19,109,1)",
+        sectionBg: "rgba(21,17,29,1)",
+        "button-dimmed-active": "rgba(71,64,89,0.6)",
       },
       spacing: {
         18: "4.5rem",

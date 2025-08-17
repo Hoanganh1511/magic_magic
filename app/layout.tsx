@@ -5,6 +5,8 @@ import { ThemeProvider } from "next-themes";
 import Header from "@/components/common/header/Header";
 import Footer from "@/components/common/footer/Footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SearchProvider } from "@/context/SearchContext";
+import MainLayout from "@/components/layout/MainLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,20 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <TooltipProvider delayDuration={0}>
-            <div className="w-full h-[100vh] overflow-auto">
-              <Header />
-              {children}
-              <Footer />
-            </div>
-          </TooltipProvider>
-        </ThemeProvider>
+        <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );
