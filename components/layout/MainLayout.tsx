@@ -24,9 +24,9 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 };
 function LayoutContent({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative w-full h-[100vh] bg-primaryBg overflow-auto ">
+    <div className="relative w-full h-[100vh] min-h-[100vh] bg-primaryBg overflow-auto ">
       <Header />
-      <main className="relative">{children}</main>
+      <main className="relative h-auto">{children}</main>
       <Footer />
     </div>
   );

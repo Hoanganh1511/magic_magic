@@ -13,19 +13,13 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: {
-        DEFAULT: "1rem",
-        sm: "1.5rem",
-        lg: "2rem",
-        xl: "3rem",
-        "2xl": "4rem",
-      },
       screens: {
         sm: "640px",
         md: "768px",
         lg: "1024px",
         xl: "1280px",
         "2xl": "1536px",
+        "3xl": "1920px",
       },
     },
     extend: {
@@ -36,14 +30,43 @@ module.exports = {
         "primary-border": "rgb(35, 30, 47)",
         primaryPink: "rgba(236,19,109,1)",
         sectionBg: "rgba(21,17,29,1)",
+        "button-dimmed": "rgba(42,37,55,0.4)",
         "button-dimmed-active": "rgba(71,64,89,0.6)",
+
+        // layer
+        "layer-01": "rgba(21,17,29,1)",
+        "layer-03": "rgba(30,25,41,1)",
       },
       spacing: {
         18: "4.5rem",
         88: "22rem",
       },
-      keyframes: {},
-      animation: {},
+      borderRadius: {
+        sm: "0.125rem", // 2px
+        DEFAULT: "0.25rem", // 4px
+        md: "0.25rem", // 4px
+        lg: "0.5rem", // 8px
+        xl: "0.75rem", // 12px
+        "4xl": "2rem",
+        "5xl": "2.5rem",
+        circle: "50%", // tròn hoàn toàn
+        card: "1.25rem", // custom cho card
+      },
+      keyframes: {
+        shimmer: {
+          "0%": { opacity: 0 },
+          "50%": { opacity: 0.4 },
+          "100%": { opacity: 0 },
+        },
+        sparkle: {
+          "0%,100%": { opacity: "0" },
+          "50%": { opacity: "1" },
+        },
+      },
+      animation: {
+        shimmer: "shimmer 2s infinite ease-in-out",
+        sparkle: "sparkle 1.5s infinite ease-in-out",
+      },
     },
   },
   plugins: [tailwindcssAnimate],

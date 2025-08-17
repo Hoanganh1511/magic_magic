@@ -16,10 +16,10 @@ const Header = () => {
         <header className="z-[10] px-4 bg-white dark:bg-[#100c18] flex items-center gap-x-4 lg:gap-x-6 min-h-[64px] md:min-h-16 border-b border-primary-border ">
           <div className="flex-1 flex items-center gap-x-4 lg:gap-x-6">
             <div className="flex items-center">
-              <div className="flex items-center gap-x-2 mr-6">
+              <Link href="/" className="flex items-center gap-x-2 mr-6">
                 <Logo size={26} color="#ff007a" />
                 <span className="font-semibold">Magic & Magic</span>
-              </div>
+              </Link>
               <ul className="flex items-center gap-x-6">
                 {navItems.map((nav, idx) => {
                   return (
@@ -54,7 +54,7 @@ const Header = () => {
             </Button>
           </div>
         </header>
-        <div className="z-[-1] bg-white dark:bg-[#100c18] border-primary-border ">
+        <div className="relative z-[1] bg-white dark:bg-[#100c18] border-primary-border ">
           <div className="h-10 flex overflow-hidden relative"></div>
         </div>
 

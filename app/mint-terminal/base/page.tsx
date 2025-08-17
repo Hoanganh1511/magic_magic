@@ -14,16 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import { Toggle } from "@/components/ui/toggle";
-import { Switch } from "@/components/ui/switch";
+
 import {
   Filter,
   Grid2x2,
@@ -37,49 +28,9 @@ import {
   Zap,
   Users,
 } from "lucide-react";
+import Trending from "@/components/views/MintPage/Trending";
 
 // --------------------- Mock Data ---------------------
-const trendingCollections = [
-  {
-    id: 1,
-    name: "OG Apes YC",
-    creator: "0x45...cadc",
-    price: 0.0055,
-    minted: 9800,
-    total: 10600,
-    supplyLabel: "LE",
-    participants: 2453,
-    timeLeft: "1 hour",
-    platform: "SeaDrop",
-    status: "Live",
-    previews: [
-      "/images/ape1.png",
-      "/images/ape2.png",
-      "/images/ape3.png",
-      "/images/ape4.png",
-      "/images/ape5.png",
-    ],
-  },
-  {
-    id: 2,
-    name: "Based Penguins",
-    creator: "0x97...8d1d",
-    price: 0.0077,
-    minted: 10200,
-    total: 10600,
-    supplyLabel: "LE",
-    participants: 2156,
-    timeLeft: "1 hour",
-    platform: "SeaDrop",
-    status: "Live",
-    previews: [
-      "/images/peng1.png",
-      "/images/peng2.png",
-      "/images/peng3.png",
-      "/images/peng4.png",
-    ],
-  },
-];
 
 const liveFeedItems = [
   {
@@ -135,186 +86,6 @@ const liveFeedItems = [
 ];
 
 // --------------------- Components ---------------------
-function SidebarFilters({ open }: { open: boolean }) {
-  return (
-    <aside
-      className={`$${
-        open ? "block" : "hidden"
-      } lg:block w-full lg:w-72 shrink-0`}
-    >
-      <div className="sticky top-4 rounded-2xl border bg-card p-4 shadow-sm">
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Filters</h3>
-        </div>
-        <Accordion type="multiple" className="w-full">
-          {[
-            "Quality Filter",
-            "Mint Style",
-            "Mint Status",
-            "Mint Price",
-            "Mint Volume",
-            "Mint Count",
-            "Percent Minted",
-            "Mint Platform",
-          ].map((title, idx) => (
-            <AccordionItem value={`item-${idx}`} key={idx}>
-              <AccordionTrigger className="text-left">{title}</AccordionTrigger>
-              <AccordionContent>
-                <div className="space-y-3">
-                  {["Any", "High", "Medium", "Low"].map((opt) => (
-                    <label key={opt} className="flex items-center gap-3">
-                      <Checkbox id={`${title}-${opt}`} />
-                      <Label htmlFor={`${title}-${opt}`}>{opt}</Label>
-                    </label>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
-    </aside>
-  );
-}
-
-function TrendingHeader({
-  onToggleSidebar,
-  sidebarOpen,
-  layout,
-  setLayout,
-}: {
-  onToggleSidebar: () => void;
-  sidebarOpen: boolean;
-  layout: "grid" | "list";
-  setLayout: (v: "grid" | "list") => void;
-}) {
-  const [range, setRange] = useState("1h");
-
-  return (
-    <div className="flex flex-wrap items-center gap-2">
-      <Button variant="outline" onClick={onToggleSidebar} className="gap-2">
-        <Filter className="h-4 w-4" /> Filter
-      </Button>
-
-      <div className="ml-auto flex items-center gap-2">
-        <div className="hidden md:flex items-center gap-2 rounded-xl border p-1">
-          {["10m", "1h", "6h", "24h"].map((t) => (
-            <Button
-              key={t}
-              size="sm"
-              variant={range === t ? "default" : "ghost"}
-              className="rounded-lg"
-              onClick={() => setRange(t)}
-            >
-              {t}
-            </Button>
-          ))}
-        </div>
-        <Button variant="ghost" size="icon" className="rounded-xl">
-          <Rocket className="h-5 w-5" />
-        </Button>
-        <div className="flex items-center rounded-xl border p-1">
-          <Toggle
-            pressed={layout === "grid"}
-            onPressedChange={() => setLayout("grid")}
-            aria-label="Grid layout"
-            className="rounded-lg"
-          >
-            <Grid2x2 className="h-4 w-4" />
-          </Toggle>
-          <Toggle
-            pressed={layout === "list"}
-            onPressedChange={() => setLayout("list")}
-            aria-label="List layout"
-            className="rounded-lg"
-          >
-            <Rows className="h-4 w-4" />
-          </Toggle>
-        </div>
-        <div className="relative w-64">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-70" />
-          <Input placeholder="Search collection" className="pl-9 rounded-xl" />
-        </div>
-        <Button className="rounded-xl gap-2">
-          <Plus className="h-4 w-4" /> Create NFT Drop
-        </Button>
-      </div>
-    </div>
-  );
-}
-
-function TrendingList({ layout }: { layout: "grid" | "list" }) {
-  return (
-    <div className="space-y-6">
-      {trendingCollections.map((c, index) => (
-        <Card key={c.id} className="rounded-2xl border shadow-sm">
-          <CardHeader className="flex flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-muted text-xl font-bold">
-                {index + 1}
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <CardTitle className="text-lg">{c.name}</CardTitle>
-                  <Badge variant="secondary">{c.status}</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground">By {c.creator}</p>
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center gap-3 text-sm">
-              <div className="flex items-center gap-1">
-                <span className="opacity-70">Price:</span> <b>{c.price}</b>
-              </div>
-              <Separator orientation="vertical" className="h-5" />
-              <div className="flex items-center gap-1">
-                <span className="opacity-70">Minted:</span>{" "}
-                <b>{c.minted.toLocaleString()}</b> / {c.total.toLocaleString()}{" "}
-                <Badge className="ml-1" variant="outline">
-                  {c.supplyLabel}
-                </Badge>
-              </div>
-              <Separator orientation="vertical" className="h-5" />
-              <div className="flex items-center gap-1">
-                <Users className="h-4 w-4" /> {c.participants.toLocaleString()}
-              </div>
-              <Separator orientation="vertical" className="h-5" />
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" /> Ends: {c.timeLeft}
-              </div>
-              <Separator orientation="vertical" className="h-5" />
-              <div className="flex items-center gap-1">
-                Platform:{" "}
-                <Badge variant="secondary" className="ml-1">
-                  {c.platform}
-                </Badge>
-              </div>
-              <Button size="sm" className="ml-2 rounded-xl">
-                Mint Now
-              </Button>
-            </div>
-          </CardHeader>
-          <CardContent>
-            {/* previews */}
-            <div
-              className={`grid gap-3 ${
-                layout === "grid"
-                  ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-5"
-                  : "grid-cols-1"
-              }`}
-            >
-              {c.previews.map((src, i) => (
-                <div
-                  key={i}
-                  className="aspect-square w-full rounded-xl bg-gradient-to-br from-blue-300/30 to-purple-300/30"
-                />
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
-}
 
 function LiveFeedHeader({ paused, setPaused, filter, setFilter }: any) {
   return (
@@ -422,15 +193,12 @@ function LiveFeedGrid({ filter }: { filter: "All" | "Free" | "Paid" }) {
   );
 }
 
-export default function MinTerminalBasePage() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [layout, setLayout] = useState<"grid" | "list">("grid");
-
+export default function Page() {
   const [paused, setPaused] = useState(false);
   const [feedFilter, setFeedFilter] = useState<"All" | "Free" | "Paid">("All");
 
   return (
-    <div className="mx-auto container px-4 py-6">
+    <div className="mx-auto container max-w-screen h-full sm:px-4 lg:px-7 py-6">
       <Tabs defaultValue="trending" className="space-y-6">
         <div className="flex items-center justify-between">
           <TabsList className="rounded-2xl flex items-center gap-x-6">
@@ -455,19 +223,7 @@ export default function MinTerminalBasePage() {
 
         {/* TRENDING */}
         <TabsContent value="trending" className="space-y-6">
-          <TrendingHeader
-            onToggleSidebar={() => setSidebarOpen((s) => !s)}
-            sidebarOpen={sidebarOpen}
-            layout={layout}
-            setLayout={setLayout}
-          />
-
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[18rem,1fr]">
-            <SidebarFilters open={sidebarOpen} />
-            <div className="space-y-6">
-              <TrendingList layout={layout} />
-            </div>
-          </div>
+          <Trending />
         </TabsContent>
 
         {/* LIVE FEED */}
