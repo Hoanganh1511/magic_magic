@@ -31,11 +31,14 @@ module.exports = {
         primaryPink: "rgba(236,19,109,1)",
         sectionBg: "rgba(21,17,29,1)",
         "button-dimmed": "rgba(42,37,55,0.4)",
+        "button-dimmed-hover": "rgba(62,56,77,0.4)",
         "button-dimmed-active": "rgba(71,64,89,0.6)",
 
         // layer
         "layer-01": "rgba(21,17,29,1)",
+        "layer-02": "rgba(25,21,35,1)",
         "layer-03": "rgba(30,25,41,1)",
+        "layer-04": "rgba(35,30,47,1)"
       },
       spacing: {
         18: "4.5rem",

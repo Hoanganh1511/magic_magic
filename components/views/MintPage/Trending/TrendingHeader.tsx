@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Toggle } from "@/components/ui/toggle";
-import { useTrending } from "@/context/nft/TrendingContext";
+import { useMint } from "@/context/nft/MintContext";
 import { Filter, Grid2x2, Plus, Rocket, Rows, Search } from "lucide-react";
 import { useState } from "react";
 
@@ -15,7 +15,7 @@ export default function TrendingHeader() {
     setLayout,
     resetFilters,
     isDefault,
-  } = useTrending();
+  } = useMint();
   const [range, setRange] = useState("1h");
 
   return (

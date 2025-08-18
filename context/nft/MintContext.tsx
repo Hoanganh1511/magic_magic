@@ -11,7 +11,7 @@ import {
 type TimeRange = "10m" | "1h" | "6h" | "24h";
 type LayoutType = "grid" | "list";
 
-interface TrendingContextType {
+interface MintContextType {
   // Top bar
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
@@ -69,11 +69,9 @@ const defaultValues = {
   platform: null as string | null,
 };
 // --- context ---
-const TrendingContext = createContext<TrendingContextType | undefined>(
-  undefined
-);
+const MintContext = createContext<MintContextType | undefined>(undefined);
 
-export function TrendingProvider({ children }: { children: React.ReactNode }) {
+export function MintProvider({ children }: { children: React.ReactNode }) {
   // top bar
   const [searchQuery, setSearchQuery] = useState("");
   const [layout, setLayout] = useState<LayoutType>("grid");
@@ -116,7 +114,7 @@ export function TrendingProvider({ children }: { children: React.ReactNode }) {
     percentMinted === defaultValues.percentMinted &&
     platform === defaultValues.platform;
   return (
-    <TrendingContext.Provider
+    <MintContext.Provider
       value={{
         searchQuery,
         setSearchQuery,
@@ -147,13 +145,13 @@ export function TrendingProvider({ children }: { children: React.ReactNode }) {
       }}
     >
       {children}
-    </TrendingContext.Provider>
+    </MintContext.Provider>
   );
 }
 
 // --- hook ---
-export function useTrending() {
-  const ctx = useContext(TrendingContext);
-  if (!ctx) throw new Error("useTrending must be used inside TrendingProvider");
+export function useMint() {
+  const ctx = useContext(MintContext);
+  if (!ctx) throw new Error("useMint must be used inside MintProvider");
   return ctx;
 }

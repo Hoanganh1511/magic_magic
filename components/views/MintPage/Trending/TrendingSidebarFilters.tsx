@@ -7,11 +7,11 @@ import {
 } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { useTrending } from "@/context/nft/TrendingContext";
+import { useMint } from "@/context/nft/MintContext";
 import { X } from "lucide-react";
 
 export default function TrendingSidebarFilters({ open }: { open: boolean }) {
-  const { isSidebarOpen, setSidebarOpen, layout, setLayout } = useTrending();
+  const { isSidebarOpen, setSidebarOpen, layout, setLayout } = useMint();
 
   return (
     <aside className={`${open ? "block" : "hidden"} w-full lg:w-72 shrink-0`}>

@@ -26,7 +26,9 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative w-full h-[100vh] min-h-[100vh] bg-primaryBg overflow-auto ">
       <Header />
-      <main className="relative h-auto">{children}</main>
+      <main className="relative h-auto min-h-[calc(100vh-64px)]">
+        {children}
+      </main>
       <Footer />
     </div>
   );

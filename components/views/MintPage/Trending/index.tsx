@@ -1,11 +1,11 @@
 import React from "react";
 import TrendingHeader from "./TrendingHeader";
-import { useTrending } from "@/context/nft/TrendingContext";
 import TrendingSidebarFilters from "./TrendingSidebarFilters";
 import TrendingList from "./TrendingList";
+import { useMint } from "@/context/nft/MintContext";
 
 const Trending = () => {
-  const { isSidebarOpen, setSidebarOpen, layout, setLayout } = useTrending();
+  const { isSidebarOpen, setSidebarOpen, layout, setLayout } = useMint();
 
   return (
     <div className="w-full">
