@@ -8,6 +8,7 @@ import Trending from "@/components/views/MintPage/Trending";
 import LiveFeed from "@/components/views/MintPage/LiveFeed";
 import { useMint } from "@/context/nft/MintContext";
 import TabTools from "@/components/views/MintPage/TabTools";
+import Link from "next/link";
 
 export default function Page() {
   const {} = useMint();
@@ -40,6 +41,11 @@ export default function Page() {
             </TabsTrigger>
           </TabsList>
           <div>
+            {activeTab === "trending" && (
+              <>
+                <Link href="/mint-terminal/create-or-manage"></Link>
+              </>
+            )}
             {activeTab === "live" && (
               <>
                 <TabTools />

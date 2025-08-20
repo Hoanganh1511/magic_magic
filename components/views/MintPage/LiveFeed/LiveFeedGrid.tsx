@@ -133,7 +133,7 @@ export default function LiveFeedGrid({
           className="rounded-lg bg-layer-02 shadow-sm border-none p-4"
         >
           <CardContent className="p-0  text-sm">
-            <div className="flex items-center gap-[12px] mb-4">
+            <div className="flex items-center gap-[12px] mb-2">
               <div className="relative overflow-hidden min-w-[100px] aspect-square bg-white/10 rounded-md">
                 <Image
                   src="/assets/images/collections/gif_demo_live_feed_1.webp"
@@ -151,7 +151,7 @@ export default function LiveFeedGrid({
               </div>
             </div>
             {/* --- */}
-            <div className="flex justify-between items-start rounded-md mb-3  p-3 text-sm text-white">
+            <div className="flex justify-between items-start rounded-md mb-2  p-2 bg-layer-04 text-sm text-white">
               {/* Cột trái */}
               <div className="flex flex-col gap-2">
                 <span className=" text-xs">Limited Edition</span>
